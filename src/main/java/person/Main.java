@@ -14,12 +14,7 @@ interface PersonTester {
     boolean test(Person p);
 }
 
-// an implementing tester provides one filter
-class MasculinityTester implements PersonTester{
-    public boolean test(Person p) {
-        return p.gender == Gender.MALE;
-    }
-}
+// We eliminated the MasculinityTester class
 
 public class Main {
     public static void main (String[] args) {
@@ -30,7 +25,11 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        printPersons(persons, new MasculinityTester());
+        // We implemented the interface PersonTester directly, using a
+        // lambda expression. The expression "p -> p.gender == Gender.MALE"
+        // is fully equivalent to the entire eliminated class. You'll have noticed
+        // it is much more compact.
+        printPersons(persons, p -> p.gender == Gender.MALE);
     }
 
     // Prints persons when they match the provided PersonTester
