@@ -2,6 +2,7 @@ package person;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by Julien Smeets (jsmeets@quintor.nl) on 8-9-16.
@@ -9,12 +10,8 @@ import java.util.List;
  * This application is supposed to enable an administrator to filter his personnel
  * based on various criteria, for example their age or gender.
  */
-// an interface that provides a method to test a Person
-interface PersonTester {
-    boolean test(Person p);
-}
 
-// We eliminated the MasculinityTester class
+// We eliminated both PersonTester and MasculinityTester
 
 public class Main {
     public static void main (String[] args) {
@@ -25,15 +22,14 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // We implemented the interface PersonTester directly, using a
-        // lambda expression. The expression "p -> p.gender == Gender.MALE"
-        // is fully equivalent to the entire eliminated class. You'll have noticed
-        // it is much more compact.
+        // Instead of implementing PersonTester, we implemented Predicate<Person>,
+        // a generic interface that only declares method "boolean test()". These
+        // generic interfaces can be used with any Object type.
         printPersons(persons, p -> p.gender == Gender.MALE);
     }
 
-    // Prints persons when they match the provided PersonTester
-    public static void printPersons(List<Person> persons, PersonTester tester){
+    // Prints persons when they match the criteria of the Predicate
+    public static void printPersons(List<Person> persons, Predicate<Person> tester){
         for (Person p : persons) if (tester.test(p)) System.out.println(p);
     }
 }
