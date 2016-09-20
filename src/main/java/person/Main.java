@@ -9,7 +9,7 @@ import java.util.List;
  * This application is supposed to enable an administrator to filter his personnel
  * based on various criteria, for example their age or gender.
  */
-// an interface that provides a generic test method
+// an interface that provides a method to test a Person
 interface PersonTester {
     boolean test(Person p);
 }
