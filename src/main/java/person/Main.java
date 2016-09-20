@@ -1,7 +1,9 @@
 package person;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Created by Julien Smeets (jsmeets@quintor.nl) on 8-9-16.
@@ -11,40 +13,20 @@ import java.util.List;
  */
 public class Main {
     public static void main (String[] args) {
-        List<Person> persons = Arrays.asList(
-                new Person("Julien", 29, 189, Gender.MALE),
-                new Person("Peter", 35, 172, Gender.PRIVATE),
-                new Person("Abdul", 21, 180, Gender.MALE),
-                new Person("Ilse", 13, 151, Gender.FEMALE),
-                new Person("Jesse", 65, 190, Gender.OTHER));
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/list-of-names.txt")))){
 
-        // This code replaces an interface, a class, a method and an
-        // enormous amount of unreadable boilerplate code with three concise lines.
-        // The functionality is exactly the same as that of branch
-        // "exampleFilterWithLocalClass".
-        persons.stream()                                    // Source
-                .filter(p -> p.gender == Gender.MALE)       // Intermediate op filter()
-                .forEach(p -> System.out.println(p));       // Terminal op forEach()
+            // This is what it's about: a file is used as a source for a Stream
+            // using the lines() method. The file contains a list of names.
+            // Intermediate operations are use to print the first three names in
+            // alphabetical order that don't start with an A.
+            reader.lines()
+                    .sorted()
+                    .filter(s -> !s.startsWith("A"))
+                    .limit(3)
+                    .forEach(s -> System.out.println(s));
+
+        } catch (IOException e){
+            System.out.println("File does not exist. Exiting.");
+        }
     }
-}
-
-class Person {
-    public String name;
-    public int age;
-    public int length;
-    public Gender gender;
-
-
-    public Person(String name, int age, int length, Gender gender){
-        this.name = name; this.age = age; this.length = length; this.gender = gender;
-    }
-
-    @Override
-    public String toString(){
-        return name + " is " + age + " years old, " + length + " cm long and has gender \"" + gender.toString() + "\".";
-    }
-}
-
-enum Gender {
-    MALE, FEMALE, OTHER, PRIVATE
 }
