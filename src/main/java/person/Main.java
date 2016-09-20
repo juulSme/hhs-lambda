@@ -27,8 +27,9 @@ public class Main {
 
         // We implemented the interface PersonTester directly, using a
         // lambda expression. The expression "p -> p.gender == Gender.MALE"
-        // is fully equivalent to the entire eliminated class. You'll have noticed
-        // it is much more compact.
+        // is fully equivalent to the entire eliminated class. The interface is
+        // implemented implicitly, by having a Person as an input and returning
+        // a boolean. You'll have noticed it is much more compact.
         printPersons(persons, p -> p.gender == Gender.MALE);
     }
 
