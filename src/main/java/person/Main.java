@@ -15,6 +15,11 @@ interface PersonConsumer {
 }
 
 public class Main {
+    // TODO: Exercise 2.2. Adapt this method to use the Functional Interface
+    public static void ConsumePersons(List<Person> persons){
+        for (Person p : persons);
+    }
+
     public static void main (String[] args) {
         List<Person> persons = Arrays.asList(
                 new Person("Julien", 29, 189, Gender.MALE),
@@ -23,13 +28,8 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // TODO: Exercise 2.2. Implement PersonConsumer using a lambda expression.
-        ConsumePersons(persons, /**YOUR LAMBDA HERE*/);
-    }
-
-
-    public static void ConsumePersons(List<Person> persons, PersonConsumer consumer){
-        for (Person p : persons) consumer.apply(p);
+        // TODO: Exercise 2.3. Implement PersonConsumer using a lambda expression.
+        ConsumePersons(persons);
     }
 }
 
