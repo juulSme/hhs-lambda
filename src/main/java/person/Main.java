@@ -32,9 +32,9 @@ public class Main {
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
         // The processPersons method needs a Predicate and a Consumer.
-        // TODO: Exercise 3.2. Define lambda's so that the length of
+        // TODO: Exercise 3.2. Implement lambda's so that the length of
         // TODO: the name of everybody taller than 170 is printed.
-        processPersons(persons,
+        filterAndProcessPersons(persons,
                 /**Predicate implementation here*/,
                 /**Consumer implementation here*/);
     }
