@@ -18,10 +18,13 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // This code
-        persons.stream()
-                .filter(p -> p.gender == Gender.MALE)
-                .forEach(p -> System.out.println(p));
+        // This code replaces an interface, a class, a method and an
+        // enormous amount of unreadable boilerplate code with three concise lines.
+        // The functionality is exactly the same as that of branch
+        // "exampleFilterWithLocalClass".
+        persons.stream()                                    // Source
+                .filter(p -> p.gender == Gender.MALE)       // Intermediate op filter()
+                .forEach(p -> System.out.println(p));       // Terminal op forEach()
     }
 }
 
