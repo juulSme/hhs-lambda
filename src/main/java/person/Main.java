@@ -9,12 +9,10 @@ import java.util.List;
  * This application is supposed to enable an administrator to filter his personnel
  * based on various criteria, for example their age or gender.
  */
-// an interface that provides a method to test a Person
-interface PersonTester {
-    boolean test(Person p);
+// an interface that "consumes" a Person (it does not return a value)
+interface PersonConsumer {
+    // TODO: Exercise 2.1. Define a method "apply"
 }
-
-// We eliminated the MasculinityTester class
 
 public class Main {
     public static void main (String[] args) {
@@ -25,16 +23,13 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // We implemented the interface PersonTester directly, using a
-        // lambda expression. The expression "p -> p.gender == Gender.MALE"
-        // is fully equivalent to the entire eliminated class. You'll have noticed
-        // it is much more compact.
-        printPersons(persons, p -> p.gender == Gender.MALE);
+        // TODO: Exercise 2.2. Implement PersonConsumer using a lambda expression.
+        ConsumePersons(persons, /**YOUR LAMBDA HERE*/);
     }
 
-    // Prints persons when they match the provided PersonTester
-    public static void printPersons(List<Person> persons, PersonTester tester){
-        for (Person p : persons) if (tester.test(p)) System.out.println(p);
+
+    public static void ConsumePersons(List<Person> persons, PersonConsumer consumer){
+        for (Person p : persons) consumer.apply(p);
     }
 }
 
@@ -58,3 +53,6 @@ class Person {
 enum Gender {
     MALE, FEMALE, OTHER, PRIVATE
 }
+
+// Hint: your lambda should not return a value, so feed a Person to some void.
+// For example one that prints something to the console...
