@@ -12,15 +12,13 @@ import java.util.function.Predicate;
  * based on various criteria, for example their age or gender.
  */
 public class Main {
-    // This is an adapted version of printPersons(). Instead of prescribing printing
-    // behavior, you can now provide a Consumer lambda that determines what is done with
-    // a Person object.
-    public static void filterAndProcessPersons(List<Person> persons,
-                                               Predicate<Person> tester,
-                                               Consumer<Person> consumer){
-        for (Person p : persons){
-            // TODO: Exercise 3.1. Apply the consumer if the Person p is tested positively
-            if (tester.test(p)) consumer.accept(p);
+    // This version of filterAndProcess uses generics so that it can be
+    // used with any class instead of just Persons.
+    public static <T> void filterAndProcess(List<T> list,
+                                               Predicate<T> tester,
+                                               Consumer<T> consumer){
+        for (T t : list){
+            if (tester.test(t)) consumer.accept(t);
         }
     }
 
@@ -32,13 +30,32 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // The processPersons method needs a Predicate and a Consumer.
-        // TODO: Exercise 3.2. Implement lambda's so that the length of
-        // TODO: the name of everybody taller than 170 is printed.
-        filterAndProcessPersons(persons,
-                p -> p.length > 170,
-                p -> System.out.println(p.name.length()));
+        // As you can see, the method adapts to the type of the applied List.
+        // The type of p is inferred automatically. This implementation
+        // prints the name of every adult non-male.
+        filterAndProcess(persons,
+                p -> p.age > 18 && p.gender != Gender.MALE,
+                p -> System.out.println(p.name));
+
+        // But now it also works with animals! These lambda's print the name
+        // of each animal that starts with a "C".
+        List<Animal> animals = Arrays.asList(
+                new Animal("Dog"),
+                new Animal("Camel"),
+                new Animal("Turkey"));
+        filterAndProcess(animals,
+                a -> a.name.startsWith("C"),
+                a -> System.out.println(a));
+
     }
+}
+
+class Animal {
+    public String name;
+
+    public Animal(String name){ this.name = name; }
+
+    public String toString(){ return name; }
 }
 
 class Person {
