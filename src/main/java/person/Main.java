@@ -2,8 +2,6 @@ package person;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 /**
  * Created by Julien Smeets (jsmeets@quintor.nl) on 8-9-16.
@@ -20,8 +18,10 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
+        // This code
         persons.stream()
-                .
+                .filter(p -> p.gender == Gender.MALE)
+                .forEach(p -> System.out.println(p));
     }
 }
 
