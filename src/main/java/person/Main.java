@@ -12,12 +12,13 @@ import java.util.List;
 // an interface that "consumes" a Person (it does not return a value)
 interface PersonConsumer {
     // TODO: Exercise 2.1. Define a method "apply"
+    void apply (Person p);
 }
 
 public class Main {
     // TODO: Exercise 2.2. Adapt this method to use the Functional Interface
-    public static void ConsumePersons(List<Person> persons){
-        for (Person p : persons) /**DO SOMETHING WITH p*/;
+    public static void ConsumePersons(List<Person> persons, PersonConsumer consumer){
+        for (Person p : persons) consumer.apply(p);
     }
 
     public static void main (String[] args) {
@@ -29,7 +30,7 @@ public class Main {
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
         // TODO: Exercise 2.3. Implement PersonConsumer using a lambda expression.
-        ConsumePersons(persons/**, LAMBDA EXPRESSION*/);
+        ConsumePersons(persons, p -> System.out.println(p));
     }
 }
 
