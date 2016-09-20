@@ -26,7 +26,9 @@ public class Main {
         // In this case the lambda require two persons, p and q, and returns one.
         // The return statement is implicit. Notice how closely it resembles math functions.
         // For example, compare f(x, y) = 5x + 2y
-        printPersons(persons, (p,q) -> p.age > q.age ? p : q );
+        printPersons(persons,
+                (p,q) -> p.age > q.age ? p : q
+                );
     }
 
     // Prints persons when they match the provided PersonTester
