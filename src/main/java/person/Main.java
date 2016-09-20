@@ -9,12 +9,10 @@ import java.util.List;
  * This application is supposed to enable an administrator to filter his personnel
  * based on various criteria, for example their age or gender.
  */
-// an interface that provides a method to test a Person
-interface PersonTester {
-    boolean test(Person p);
+// an interface that compares two Persons and returns one
+interface PersonComparator {
+    Person compare(Person p1, Person p2);
 }
-
-// We eliminated the MasculinityTester class
 
 public class Main {
     public static void main (String[] args) {
@@ -25,16 +23,17 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // We implemented the interface PersonTester directly, using a
-        // lambda expression. The expression "p -> p.gender == Gender.MALE"
-        // is fully equivalent to the entire eliminated class. You'll have noticed
-        // it is much more compact.
-        printPersons(persons, p -> p.gender == Gender.MALE);
+        // In this case the lambda require two persons, p and q, and returns one.
+        // The return statement is implicit. Notice how closely it resembles math functions.
+        // For example, compare f(x, y) = 5x + 2y
+        printPersons(persons, (p,q) -> p.age > q.age ? p : q );
     }
 
     // Prints persons when they match the provided PersonTester
-    public static void printPersons(List<Person> persons, PersonTester tester){
-        for (Person p : persons) if (tester.test(p)) System.out.println(p);
+    public static void printPersons(List<Person> persons, PersonComparator comparator){
+        for (Person p : persons) {
+            System.out.println(comparator.compare(p, persons.get(0)));
+        }
     }
 }
 
