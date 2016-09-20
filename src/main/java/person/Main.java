@@ -17,7 +17,7 @@ interface PersonConsumer {
 public class Main {
     // TODO: Exercise 2.2. Adapt this method to use the Functional Interface
     public static void ConsumePersons(List<Person> persons){
-        for (Person p : persons);
+        for (Person p : persons) /**DO SOMETHING WITH p*/;
     }
 
     public static void main (String[] args) {
@@ -29,7 +29,7 @@ public class Main {
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
         // TODO: Exercise 2.3. Implement PersonConsumer using a lambda expression.
-        ConsumePersons(persons);
+        ConsumePersons(persons/**, LAMBDA EXPRESSION*/);
     }
 }
 
