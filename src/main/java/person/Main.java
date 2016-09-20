@@ -20,6 +20,7 @@ public class Main {
                                                Consumer<Person> consumer){
         for (Person p : persons){
             // TODO: Exercise 3.1. Apply the consumer if the Person p is tested positively
+            if (tester.test(p)) consumer.accept(p);
         }
     }
 
@@ -32,11 +33,11 @@ public class Main {
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
         // The processPersons method needs a Predicate and a Consumer.
-        // TODO: Exercise 3.2. Define lambda's so that the length of
+        // TODO: Exercise 3.2. Implement lambda's so that the length of
         // TODO: the name of everybody taller than 170 is printed.
-        processPersons(persons,
-                /**Predicate implementation here*/,
-                /**Consumer implementation here*/);
+        filterAndProcessPersons(persons,
+                p -> p.length > 170,
+                p -> System.out.println(p.name.length()));
     }
 }
 
