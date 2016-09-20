@@ -7,9 +7,6 @@ import java.io.IOException;
 
 /**
  * Created by Julien Smeets (jsmeets@quintor.nl) on 8-9-16.
- *
- * This application is supposed to enable an administrator to filter his personnel
- * based on various criteria, for example their age or gender.
  */
 public class Main {
     public static void main (String[] args) {
