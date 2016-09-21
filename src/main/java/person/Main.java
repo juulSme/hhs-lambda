@@ -2,6 +2,7 @@ package person;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Julien Smeets (jsmeets@quintor.nl) on 8-9-16.
@@ -20,8 +21,23 @@ public class Main {
 
         // Only use Streams and lambdas for all exercises.
         // TODO: Exercise 5.1. Print the names of all adults sorted in reversed alphabetical order
+        persons.stream()
+                .filter(p -> p.age >= 18)
+                .sorted((p,q) -> q.name.compareTo(p.name))
+                .forEach(p -> System.out.println(p.name));
+
         // TODO: Exercise 5.2. Print the sum of all ages of males.
+        System.out.println(persons.stream()
+                .filter(p -> p.gender == Gender.MALE)
+                .map(p -> p.age)
+                .reduce(0, (i, j) -> i + j));
+
         // TODO: Exercise 5.3. Create a List of lengths in meters of all minors
+        List<Double> minorLengths = persons.stream()
+                .filter(p -> p.age < 18)
+                .map(p -> p.length / 100.0)
+                .collect(Collectors.toList());
+        minorLengths.forEach(d -> System.out.println(d));
     }
 }
 
