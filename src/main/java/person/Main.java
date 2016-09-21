@@ -20,11 +20,18 @@ public class Main {
 
         // Stream that prints the ages of all non-private-gendered
         // persons sorted alphabetically by name.
+        // TODO: Exercise 4.1. Write down which Functional Interface is implemented by each lambda
         persons.stream()
-                .filter(p -> p.gender != Gender.PRIVATE)    // filter takes a Predicate
-                .sorted((p, q) -> p.name.compareTo(q.name)) // Comparator is also a Functional Interface, so it can be implemented with a lambda
-                .map(p -> p.age)                            // map takes a Function that generates another type
-                .forEach(i -> System.out.println(i));       // print the resulting Stream of ints using a Consumer
+                .filter(p -> p.gender != Gender.PRIVATE)
+                .sorted((p, q) -> p.name.compareTo(q.name))
+                .map(p -> p.age)
+                .forEach(i -> System.out.println(i));
+        /**
+         * filter() takes a
+         * sorted() takes a
+         * map() takes a
+         * forEach() takes a
+         */
     }
 }
 
