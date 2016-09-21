@@ -27,10 +27,10 @@ public class Main {
                 .map(p -> p.age)
                 .forEach(i -> System.out.println(i));
         /**
-         * filter() takes a
-         * sorted() takes a
-         * map() takes a
-         * forEach() takes a
+         * filter() takes a Predicate   T   -> boolean
+         * sorted() takes a Comparator  T,T -> int
+         * map() takes a Function       T   -> R
+         * forEach() takes a Consumer   T   -> void
          */
     }
 }
