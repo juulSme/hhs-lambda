@@ -18,22 +18,10 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // Stream that prints the ages of all non-private-gendered
-        // persons sorted in ascending order
-        // TODO: Exercise 4.1. Write down which Functional Interface is implemented by each lambda
-        persons.stream()
-                .filter(p -> p.gender != Gender.PRIVATE)
-                .peek(p -> System.out.println(p))
-                .sorted((p, q) -> p.age - q.age)
-                .map(p -> p.age)
-                .forEach(i -> System.out.println(i));
-        /**
-         * filter() takes a
-         * peek() takes a
-         * sorted() takes a
-         * map() takes a
-         * forEach() takes a
-         */
+        // Only use Streams and lambdas for all exercises.
+        // TODO: Exercise 5.1. Print the names of all adults sorted in reversed alphabetical order
+        // TODO: Exercise 5.2. Print the sum of all ages of males.
+        // TODO: Exercise 5.3. Create a List of lengths in meters of all minors
     }
 }
 
