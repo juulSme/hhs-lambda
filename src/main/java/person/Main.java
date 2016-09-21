@@ -19,11 +19,11 @@ public class Main {
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
         // Stream that prints the ages of all non-private-gendered
-        // persons sorted alphabetically by name.
+        // persons sorted in ascending order
         // TODO: Exercise 4.1. Write down which Functional Interface is implemented by each lambda
         persons.stream()
                 .filter(p -> p.gender != Gender.PRIVATE)
-                .sorted((p, q) -> p.name.compareTo(q.name))
+                .sorted((p, q) -> p.age - q.age)
                 .map(p -> p.age)
                 .forEach(i -> System.out.println(i));
         /**
