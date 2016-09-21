@@ -23,11 +23,13 @@ public class Main {
         // TODO: Exercise 4.1. Write down which Functional Interface is implemented by each lambda
         persons.stream()
                 .filter(p -> p.gender != Gender.PRIVATE)
+                .peek(p -> System.out.println(p))
                 .sorted((p, q) -> p.age - q.age)
                 .map(p -> p.age)
                 .forEach(i -> System.out.println(i));
         /**
          * filter() takes a
+         * peek() takes a
          * sorted() takes a
          * map() takes a
          * forEach() takes a
