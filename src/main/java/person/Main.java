@@ -18,13 +18,13 @@ public class Main {
                 new Person("Ilse", 13, 151, Gender.FEMALE),
                 new Person("Jesse", 65, 190, Gender.OTHER));
 
-        // This code replaces an interface, a class, a method and an
-        // enormous amount of unreadable boilerplate code with three concise lines.
-        // The functionality is exactly the same as that of branch
-        // "exampleFilterWithLocalClass".
-        persons.stream()                                    // Source
-                .filter(p -> p.gender == Gender.MALE)       // Intermediate op filter()
-                .forEach(p -> System.out.println(p));       // Terminal op forEach()
+        // Stream that prints the ages of all non-private-gendered
+        // persons sorted alphabetically by name.
+        persons.stream()
+                .filter(p -> p.gender != Gender.PRIVATE)    // filter takes a Predicate
+                .sorted((p, q) -> p.name.compareTo(q.name)) // Comparator is also a Functional Interface, so it can be implemented with a lambda
+                .map(p -> p.age)                            // map takes a Function that generates another type
+                .forEach(i -> System.out.println(i));       // print the resulting Stream of ints using a Consumer
     }
 }
 
