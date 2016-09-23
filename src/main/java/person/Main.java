@@ -11,14 +11,14 @@ import java.util.List;
  */
 // an interface that "consumes" a Person (it does not return a value)
 interface PersonConsumer {
-    // TODO: Exercise 2.1. Define a method "apply"
-    void apply (Person p);
+    // TODO: Exercise 2.1. Define a method "accept"
+    void accept (Person p);
 }
 
 public class Main {
     // TODO: Exercise 2.2. Adapt this method to use the Functional Interface
     public static void ConsumePersons(List<Person> persons, PersonConsumer consumer){
-        for (Person p : persons) consumer.apply(p);
+        for (Person p : persons) consumer.accept(p);
     }
 
     public static void main (String[] args) {
