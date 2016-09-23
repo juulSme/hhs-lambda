@@ -23,19 +23,19 @@ public class Main {
         // TODO: Exercise 5.1. Print the names of all adults sorted in reversed alphabetical order
         persons.stream()
                 .filter(p -> p.age >= 18)
-                .sorted((p,q) -> q.name.compareTo(p.name))
+                .sorted((p,q) -> q.name.compareTo(p.name))  // note the reversal. Alternatively: -> -p.name.compareTo(q.name)
                 .forEach(p -> System.out.println(p.name));
 
         // TODO: Exercise 5.2. Print the sum of all ages of males.
         System.out.println(persons.stream()
                 .filter(p -> p.gender == Gender.MALE)
-                .map(p -> p.age)
+                .map(p -> p.age) // This is necessary because a direct Person to int reduction is not possible
                 .reduce(0, (i, j) -> i + j));
 
         // TODO: Exercise 5.3. Create a List of lengths in meters of all minors
         List<Double> minorLengths = persons.stream()
                 .filter(p -> p.age < 18)
-                .map(p -> p.length / 100.0)
+                .map(p -> p.length / 100.0)     // p.length / 100.0 implicitly casts p.length to a double
                 .collect(Collectors.toList());
         minorLengths.forEach(d -> System.out.println(d));
     }
