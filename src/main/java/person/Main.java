@@ -13,7 +13,8 @@ public class Main {
                 new Person("Peter", 35, 172, Gender.PRIVATE),
                 new Person("Abdul", 21, 180, Gender.MALE),
                 new Person("Ilse", 13, 151, Gender.FEMALE),
-                new Person("Jesse", 65, 190, Gender.OTHER));
+                new Person("Jesse", 65, 190, Gender.OTHER),
+                new Person("Jan", 24, 190, Gender.MALE));
     }
 }
 
